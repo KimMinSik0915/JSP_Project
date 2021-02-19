@@ -10,7 +10,7 @@ public class BoardDAOTest {
 		// BoardDAO 객체 생성
 		BoardDAO dao = new BoardDAO();
 		
-		System.out.println(dao.list());	// boardDAO 테스트
+		System.out.println(dao.write(null));	// boardDAO 테스트
 		
 	}
 

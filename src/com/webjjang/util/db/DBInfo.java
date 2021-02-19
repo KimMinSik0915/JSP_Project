@@ -64,7 +64,7 @@ public class DBInfo {
 		
 	}
 	
-	// 3.Close method - con, pstmt : Insert, Update, Delete -> result type = 1
+	// 3.Close method -
 	public static void close(Connection con, PreparedStatement pstmt, ResultSet rs) throws SQLException {
 		
 		close(con, pstmt);

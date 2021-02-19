@@ -148,7 +148,37 @@ public class BoardDAO {
 	// 3. 게시판 글 쓰기
 	public int write(BoardVO vo) throws Exception {
 		
-		return 0;
+		int result = 0;
+		
+		try {
+			
+			// 1. 드라이버 확인 + 2. 연결
+			con = DBInfo.getConnection();
+			
+			// 3. SQL = DBSQL + 4. 실행객체 + data셋팅
+			pstmt = con.prepareStatement(DBSQL.BOARD_WIRTE);
+			
+			pstmt.setString(1, vo.getTitle());
+			pstmt.setString(2, vo.getContent());
+			pstmt.setString(3, vo.getWriter());
+			
+			// 결과값은 int type으로 나온다.
+			result = pstmt.executeUpdate();
+			
+			return result;
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();	// 개발자를 위해서 오류를 콘솔에 표시한다.
+			
+			throw new Exception("게시판 글 보기 실행 중 DB처리 오류"); 	// 사용자를 위한 오류처리
+			
+		} finally {
+			
+			DBInfo.close(con, pstmt);	// 7. 닫기
+			
+		}
+		
 		
 	}
 	
