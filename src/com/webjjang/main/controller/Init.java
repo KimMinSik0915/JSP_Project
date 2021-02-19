@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 
 import com.webjjang.board.dao.BoardDAO;
 import com.webjjang.board.service.BoardListService;
+import com.webjjang.board.service.BoardViewService;
 
 /**
  * Servlet implementation class init
@@ -40,9 +41,11 @@ public class Init extends HttpServlet {
 		
 		// service 생성 후 저장
 		Beans.put("/board/list.jsp", new BoardListService());
+		Beans.put("/board/view.jsp", new BoardViewService());
 		
 		// service에 dao 넣기
 		Beans.get("/board/list.jsp").setDAO(Beans.getDAO("boardDAO"));
+		Beans.get("/board/view.jsp").setDAO(Beans.getDAO("boardDAO"));
 		
 		// 생성 및 저장이 잘 되어 있는지 확인
 		System.out.println(Beans.get("/board/list.jsp"));

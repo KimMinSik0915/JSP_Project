@@ -93,7 +93,48 @@ public class BoardDAO {
 	// 2. 게시판 글 보기
 	public BoardVO view(long no) throws Exception {
 		
-		return null;
+		BoardVO vo = null;
+		
+		try {
+			
+			// 1. 드라이버 확인 + 2. 연결
+			con = DBInfo.getConnection();
+			
+			// 3. SQL = DBSQL + 4. 실행객체 + data셋팅
+			pstmt = con.prepareStatement(DBSQL.BOARD_VIEW);
+			
+			pstmt.setLong(1, no);	// 시작번호
+			
+			// 5. 실행 : 데이터 한개가 나온다(반복문 필요 없음)
+			rs = pstmt.executeQuery();
+			
+			// 6. 데이터 표시 : 데이터 담기
+			if (rs != null && rs.next()) {
+				
+				vo = new BoardVO();
+				
+				vo.setNo(rs.getLong("no"));
+				vo.setTitle(rs.getString("title"));
+				vo.setContent(rs.getString("content"));
+				vo.setWriter(rs.getString("writer"));
+				vo.setWriteDate(rs.getString("writeDate"));
+				vo.setHit(rs.getLong("hit"));
+					
+			}	// end of if (rs != null && rs.next())
+				
+		} catch (Exception e) {
+			
+			e.printStackTrace();	// 개발자를 위해서 오류를 콘솔에 표시한다.
+			
+			throw new Exception("게시판 글 보기 실행 중 DB처리 오류"); 	// 사용자를 위한 오류처리
+			
+		} finally {
+			
+			DBInfo.close(con, pstmt, rs);		// 7. 닫기
+			
+		}
+		
+		return vo;
 		
 	}
 	
