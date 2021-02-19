@@ -17,7 +17,7 @@ String writer = request.getParameter("writer");
 
 BoardVO vo = new BoardVO();
 vo.setTitle(title);
-vo.setContent(content);
+vo.setContent(content); 
 vo.setWriter(writer);
 
 int result = (Integer) ExeService.execute(Beans.get(url), vo);
