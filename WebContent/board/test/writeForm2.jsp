@@ -5,11 +5,22 @@
 <head>
 <meta charset="UTF-8">
 <title>게시판 글 쓰기</title>
+<!-- 부트스트랩 라이브러리 등록(CDN방식) -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../js/formUtil.js"></script>
+
+  <style type="text/css">
+  
+   .dataRow:hover {
+   		cursor: pointer;
+   		background: #eee;
+   }
+   
+  </style>
+  
   <script type="text/javascript">
    // 객체 선택에 문제가 있다. 아래 document가 로딩이 되면 실행되는 스크립트 작성
    // jQuery에서 사용하는 $(function(){처리문;}) = jquery(function(){처리문;})
@@ -49,33 +60,33 @@
    });
    
   </script>
+  
 </head>
 <body>
 
- <div class="container">
-  <h1>글 쓰기</h1>
-  <form action="write.jsp" method="post" id="writeForm">
+<div class="container">
+ <h1>게시판 리스트</h1>
+ <form action="write2.jsp" id="writeForm" method="post" >
+  <div class="form-grouop">
+   <label for="title">제목</label>
+   <input name="title" id="title" class="form-control" required="required" placeholder="제목은 4자 이상 입력하셔야 합니다.">
+  </div>
   
-   <div class="form-group">
-    <label for="title">제목</label>
-    <input class="form-control" id="title" name="title" required="required" placeholder="제목은 4자 이상 입력하셔야 합니다.">
-   </div>
-   
-   <div class="form-group">
-    <label for="content">내용</label>
-    <textarea cols="5" class="form-control" id="content" name="content" required="required" placeholder="내용을 4자 이상 입력하셔야 합니다."></textarea>
-   </div>
-   
-   <div class="form-group">
-    <label for="writer">작성자</label>
-    <input class="form-control" id="writer" name="writer" required="required" placeholder="작성자는 2자 이상 입력하셔야 합니다.">
-   </div>
-   
-   <button class="btn btn-default">등록</button>
-   <button type="reset" class="btn btn-default">새로 입력</button>
-   <button type="button" id="cancelBtn" class="btn btn-default">취소</button>
-   
-  </form>
- </div>
+  <div class="form-grouop">
+   <label for="content">내용</label>
+   <textarea name="content" id="content" class="form-control" rows="5" required="required" placeholder="내용을 4자 이상 입력해 주셔야 합니다."></textarea>
+  </div>
+  
+  <div class="form-grouop">
+   <label for="writer">작성자</label>
+   <input name="writer" id="writer" class="form-control" required="required" placeholder="작성자를 2자 이상 입력해 주셔야 합니다.">
+  </div>
+  
+  <button>등록</button>
+  <button type="reset">새로 입력</button>
+  <button type="button" id="cancelBtn">취소</button>
+  
+ </form>
+</div>
 </body>
 </html>

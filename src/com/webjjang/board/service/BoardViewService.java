@@ -20,7 +20,21 @@ public class BoardViewService implements Service {
 	@Override
 	public Object service(Object obj) throws Exception {
 		
-		return dao.view((Long) obj);
+		// 글 보기와 글 수정 모두 사용
+		// 글 보기 일때는 조회수 1 증가(List -> View)
+		// 글 수정일 때는 증가하지 않는다.(Update -> View)
+		// 데이터는 2개가 넘어오게 된다.(Class, (Array[]))
+		// obj[0] = 글 번호, obj[1] = 증가 여부
+		Object[] objs = (Object[]) obj;
+		
+		Long no = (Long)objs[0];
+		
+		Long inc = (Long)objs[1];
+				
+		if (inc== 1) 
+			dao.increase(no);
+			
+		return dao.view(no); 
 		
 	}
 	

@@ -31,7 +31,7 @@ public class DBSQL {
 	+ " WHERE no = ? ";
 	
 	public static final String BOARD_INCREASE 
-	= " UPDATE INTO board SET hit = hti + 1 "
+	= " UPDATE board SET hit = hit + 1 "
 	+ " WHERE no = ? ";
 	
 	public static final String BOARD_GET_TOTALROW 

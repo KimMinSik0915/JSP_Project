@@ -5,23 +5,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% 
-// 0. 한글 처리
+// 0. 한글 처리 : 글 번호만 받기 때문에 삭제해도 상관 없음.
 request.setCharacterEncoding("UTF-8");
 
 // 1. 넘어오는 데이터 수집
-String title = request.getParameter("title");
-String content = request.getParameter("content");
-String writer = request.getParameter("writer");
+String strNo = request.getParameter("no");
 
-BoardVO vo = new BoardVO();
+long no = Long.parseLong(strNo);
 
-vo.setTitle(title);
-vo.setContent(content); 
-vo.setWriter(writer);
 
-// DB에 저장하는 쿼리 : write.jsp -> service -> dao
+// DB에 저장하는 쿼리 : delete.jsp -> service -> dao : 글 번호 데이터가 넘어온다.
 String url = request.getServletPath();
-int result = (Integer) ExeService.execute(Beans.get(url), vo);
+int result = (Integer) ExeService.execute(Beans.get(url), no);
 
 
 // 3. list로 이동

@@ -1,10 +1,33 @@
+<%@page import="com.webjjang.main.controller.Beans"%>
+<%@page import="com.webjjang.main.controller.ExeService"%>
+<%@page import="com.webjjang.board.vo.BoardVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%
+// 여기가 자바 부분 입니다.
+// 1. 넘어오는 데이터 받기 - 글 번호
+String strNo = request.getParameter("no");
+
+long no = Long.parseLong(strNo);
+
+// 조회수 1 증가하는 부분은 inc = 0으로 강제 세팅해서 넘겨준다.
+
+// 2. 글 번호에 맞는 데이터 가져오기 : BoardViewService -? /board/view.jsp
+String url = "/board/view.jsp"; // 현재 URL과 다르므로 강제로 세팅
+
+BoardVO vo = (BoardVO)ExeService.execute(Beans.get(url), new Long[] { no, 0L });
+		
+		
+// 3. 서버 객체에 넣기
+request.setAttribute("vo", vo);
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판 글 쓰기</title>
+<title>게시판 글 수정</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -53,25 +76,30 @@
 <body>
 
  <div class="container">
-  <h1>글 쓰기</h1>
-  <form action="write.jsp" method="post" id="writeForm">
+  <h1>글 수정</h1>
+  <form action="update.jsp" method="post" id="writeForm">
   
    <div class="form-group">
+    <label for="no">번호</label>
+    <input class="form-control" id="no" name="no" readonly="readonly" value="${vo.no }">
+   </div>
+   
+   <div class="form-group">
     <label for="title">제목</label>
-    <input class="form-control" id="title" name="title" required="required" placeholder="제목은 4자 이상 입력하셔야 합니다.">
+    <input class="form-control" id="title" name="title" required="required" value="${vo.title }">
    </div>
    
    <div class="form-group">
     <label for="content">내용</label>
-    <textarea cols="5" class="form-control" id="content" name="content" required="required" placeholder="내용을 4자 이상 입력하셔야 합니다."></textarea>
+    <textarea cols="5" class="form-control" id="content" name="content" required="required">${vo.content }</textarea>
    </div>
    
    <div class="form-group">
     <label for="writer">작성자</label>
-    <input class="form-control" id="writer" name="writer" required="required" placeholder="작성자는 2자 이상 입력하셔야 합니다.">
+    <input class="form-control" id="writer" name="writer" required="required" value="${vo.writer }">
    </div>
    
-   <button class="btn btn-default">등록</button>
+   <button class="btn btn-default">수정</button>
    <button type="reset" class="btn btn-default">새로 입력</button>
    <button type="button" id="cancelBtn" class="btn btn-default">취소</button>
    

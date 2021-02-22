@@ -14,7 +14,12 @@ String strNo = request.getParameter("no");
 
 long no = Long.parseLong(strNo);
 
-BoardVO vo = (BoardVO)ExeService.execute(Beans.get(url), no);
+// 조회수 1 증가
+String strInc = request.getParameter("inc");
+
+long inc = Long.parseLong(strInc);
+
+BoardVO vo = (BoardVO)ExeService.execute(Beans.get(url), new Long[] { no, inc });
 
 request.setAttribute("vo", vo);
 
@@ -57,6 +62,11 @@ request.setAttribute("vo", vo);
    </tr>
    
    <tr>
+    <th>제목</th>
+    <td>${vo.title }</td>
+   </tr>
+   
+   <tr>
     <th>내용</th>
     <td><pre style="background: #fff; border: none; padding: 0;">${vo.content }</pre></td>
    </tr>
@@ -87,6 +97,7 @@ request.setAttribute("vo", vo);
     </td>
    </tr>
   </tfoot>
+  
  </table>
 </div>
 </body>

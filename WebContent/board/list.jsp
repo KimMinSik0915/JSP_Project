@@ -47,7 +47,9 @@ request.setAttribute("list", list);
 			// .text() = 선택된 객체(tag) 사이에 문자를 가져온다.(tag를 가져오는것이 아닌 문자만 가져온다).
 			// .text(data) = 객체(tag) 사이에 문자를 세팅한다.
 			var no = $(this).find(".no").text();
-			location = "view.jsp?no=" + no;
+			
+			// 조회수 1 증가를 위해 inc=1을 넘겨준다.
+			location = "view.jsp?no=" + no + "&inc=1";
 	   });
    });
   </script>
