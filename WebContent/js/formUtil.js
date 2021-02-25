@@ -26,7 +26,7 @@ function checkLength(obj, item, len){
 		// 경고
 		alert(item + "은(는) " + len + "자 이상이여야 합니다.");
 		//만약에 타입이 패스워드인 경우 사용자 눈에 안보이므로 데이터를 제거한다.
-		if(obj.type == "password") obj.val() = "";
+		if(obj.type == "password") obj.value() = ""; 
 		// 커서를 위치시킨다.
 		obj.focus();
 		// submit()을 취소시키기 위한 false를 리턴한다.

@@ -1,6 +1,13 @@
 package com.webjjang.test.dao;
 
-import com.webjjang.board.dao.BoardDAO;
+
+import java.util.List;
+
+import com.webjjang.main.controller.ExeService;
+import com.webjjang.member.dao.MemberDAO;
+import com.webjjang.member.service.MemberListService;
+import com.webjjang.member.vo.MemberVO;
+import com.webjjang.util.db.DBSQL;
 
 public class BoardDAOTest {
 
@@ -8,10 +15,18 @@ public class BoardDAOTest {
 
 		// BoardDAO 테스팅
 		// BoardDAO 객체 생성
-		BoardDAO dao = new BoardDAO();
+//		BoardDAO dao = new BoardDAO();
 		
-		System.out.println(dao.write(null));	// boardDAO 테스트
+//		System.out.println(dao.list());	// boardDAO 테스트
+//		
+//		List<BoardVO> list = (List<BoardVO>) ExeService.execute(new BoardListService(), null);
 		
+		System.out.println(DBSQL.MEMBER1_LIST);
+		
+//		MemberDAO dao = new MemberDAO();
+//		
+//		System.out.println(dao.list());
+//		
 	}
 
 }

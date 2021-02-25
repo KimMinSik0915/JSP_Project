@@ -72,6 +72,7 @@ request.setAttribute("list", list);
   </thead>
   
   <tbody>
+   <!-- list : request -> vo : pageContext -->
    <!-- 데이터가 있는 만큼 반복이 되어지는 부분(시작) -->
    <c:forEach items="${list }" var="vo">
     <tr class="dataRow">
