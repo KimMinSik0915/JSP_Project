@@ -62,4 +62,20 @@ public class DBSQL {
 			+ " ORDER BY id ASC "
 		+ " ) "
 	+ " ) WHERE rnum BETWEEN ? AND ? ";
+	
+	// 회원등급 수정 =========================================================================================================
+	public static final String MEMBER_GRADE_MODIFY = 
+	  " UPDATE member set gradeNo = ? "
+	+ " WHERE id = ? ";
+	
+	// 내 정보 관리 ==========================================================================================================
+	public static final String MEMBER_VIEW =
+	  " SELECT m.id, m.name, m.gender, "
+	+ " TO_CHAR(m.birth, 'yyyy.mm.dd') birth, "		// arius에는 붙이지 않는다. 형식(TO_CHAR(m.xxxx, 'yyyy.mm.dd') xxxx)
+	+ " m.tel, m.email, "
+	+ " TO_CHAR(m.regDate, 'yyyy.mm.dd') regDate, "
+	+ " m.gradeNo, g.gradeName, m.status "
+	+ " FROM member m, grade g "
+	+ " WHERE id = ? AND (m.gradeNo = g.gradeNo) "; 
+	
 }

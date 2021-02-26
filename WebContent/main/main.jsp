@@ -27,7 +27,8 @@
    <div id="userInfo">
     <span>${login.name }(${login.id })</span> 님은 ${login.gradeName } 권한으로 로그인 되어 있습니다.
    </div>
-   <a href="../member/logout.jsp" class="btn btn-default">로그아웃</a> 
+    <a href="../member/logout.jsp" class="btn btn-default">로그아웃</a> 
+    <a href="../member/view.jsp" class="btn btn-default">내 정보보기</a> 
    <!-- 로그인을 한 상태 일때 -->
    <c:if test="${login.gradeNo == 9 }">
     <!-- 관리자 메뉴  -->

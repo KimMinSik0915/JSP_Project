@@ -25,7 +25,6 @@ request.setAttribute("list", list);
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-
 	$(function () {
 		
 		$(".gradeModifyBtn").click(function () {
@@ -48,15 +47,31 @@ request.setAttribute("list", list);
 			
 		});
 		
+		// 등급 수정 form의 전달 이벤트
+		// 객체의 선택이 잘 되는지 확인
+		// alert($("#formGradeModifyBTN"));
+		// alert($("#formGradeModifyBTN").prop("tagName"));
+		
+		$("#formGradeModifyBtn").click(function () {
+			
+			// alert("formGradeModifyBtn 클릭");
+			
+			// form의 data 넘기기
+			// form 객체 확인
+			// alert($("#gradeModifyForm"));
+			
+			// form의 데이터 전송하기 -> form.submit();
+			$("#gradeModifyForm").submit();
+			
+		});
+		
 	});
-
 </script>
 </head>
 <body>
  <div class="container">
   <h1>회원 리스트</h1>
   <table class="table">
- 
    <thead>
     <tr>
      <th>아이디</th>
@@ -69,7 +84,6 @@ request.setAttribute("list", list);
      <th>상태</th>
     </tr>
    </thead>
-   
    <tbody>
     <c:forEach items="${list }" var="vo">
      <tr class="dataRow">
@@ -89,7 +103,6 @@ request.setAttribute("list", list);
      </tr>
     </c:forEach>
    </tbody>
-   
    <tfoot>
     <tr>
      <td colspan="8">
@@ -99,7 +112,6 @@ request.setAttribute("list", list);
    
   </table>
  </div>
- 
  <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -129,6 +141,7 @@ request.setAttribute("list", list);
        </form>
       </div>
       <div class="modal-footer">
+       <button type="button" class="btn btn-default" id="formGradeModifyBtn" >변경</button>
        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
       </div>
     </div>

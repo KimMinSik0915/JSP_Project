@@ -2,7 +2,7 @@ package com.webjjang.member.vo;
 
 public class MemberVO {
 
-	private String id, pw, name, gender, birth, tel, emil;
+	private String id, pw, name, gender, birth, tel, email;
 	
 	private String regDate, conDate, gradeName, status;
 	
@@ -56,12 +56,12 @@ public class MemberVO {
 		this.tel = tel;
 	}
 
-	public String getEmil() {
-		return emil;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setEmil(String emil) {
-		this.emil = emil;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getRegDate() {
@@ -108,7 +108,7 @@ public class MemberVO {
 	@Override
 	public String toString() {
 		return "MemberVO [id=" + id + ", pw=" + pw + ", name=" + name + ", gender=" + gender + ", birth=" + birth
-				+ ", tel=" + tel + ", emil=" + emil + ", regDate=" + regDate + ", conDate=" + conDate + ", gradeName="
+				+ ", tel=" + tel + ", email=" + email + ", regDate=" + regDate + ", conDate=" + conDate + ", gradeName="
 				+ gradeName + ", status=" + status + ", gradeNo=" + gradeNo + "]";
 	}
 	

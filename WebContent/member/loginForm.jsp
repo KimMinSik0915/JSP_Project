@@ -24,7 +24,7 @@
  
   <div class="form-group">
    <label for="id">아이디</label>
-   <input name="id" id="id" class="form-control">
+   <input name="id" id="id" class="form-control" autofocus="autofocus">
   </div>
   
   <div class="form-group">
