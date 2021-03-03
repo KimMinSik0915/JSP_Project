@@ -13,7 +13,6 @@ System.out.println("view.jsp 실행 -----------------------");
 // session의 login에 id가 들어있다.
 // session.getAttribute("login") = data type이 Object
 LoginVO loginVO = (LoginVO)session.getAttribute("login");	// session에 저장된 정보가 loginVO에 담겨 있으므로 LoginVO로 캐스팅하여 사용
-
 System.out.println("view.jsp loginVO : " + loginVO);	// server가 리스타트되면 자동 로그아웃 된다.
 
 // 로그인이 안되어 있으면(null) login.jsp로 가라
@@ -28,21 +27,17 @@ if(loginVO == null) {
 
 // 필요한 정보인 id는 loginVO에 담겨 있으므로 loginvo.getId를 이용해 ID를 가져온다.
 String id = loginVO.getId();
-
 System.out.println("view.jsp id : " + id);
 
 // 요청 URL 받아오기 
 String url = request.getServletPath();
-
 System.out.println("view.jsp url" + url);
 
 Service service = Beans.get(url);
-
 System.out.println("view.jsp [service] : " + service);
 
 // VO객체에서 데이터 가져오기 (실행결과를 VO객체에 저장해야 하므로 MemberVO를 초기화)
 MemberVO vo = (MemberVO)ExeService.execute(Beans.get(url), id);
-
 System.out.println("view.jsp vo : " + vo);
 
 request.setAttribute("vo", vo);		// 필요한 정보(id, name 등등)을 요청해야 html에서 사용할 수있다.

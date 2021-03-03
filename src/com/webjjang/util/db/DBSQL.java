@@ -4,13 +4,13 @@ public class DBSQL {
 
 	// 게시판 쿼리 =====================================================================================================================================================================================
 	public static final String BOARD_LIST 	// 게시판 리스트
-	= " SELECT rnum, no, title, writer, "
-	+ " TO_CHAR(writeDate, 'yyyy.mm.dd') writeDate, hit FROM ( "
-		+ " SELECT ROWNUM rnum, no, title, writer, writeDate, hit FROM ( "
-			+ " SELECT no, title, writer, writeDate, hit FROM board "
-			+ " ORDER BY no DESC "
+	= " SELECT rnum, no, title, writer,"
+	+ " TO_CHAR(writeDate, 'yyyy.mm.dd') writeDate, hit FROM( "
+		+ " SELECT rownum rnum, no, title, writer, writeDate, hit FROM ("
+			+ " SELECT no, title, writer, writeDate, hit FROM board"
+			+ " order by no desc "
 		+ " ) "
-	+ " ) WHERE rnum BETWEEN ? AND ? ";
+	+ ") where rnum between ? and ?  ";
 	
 	public static final String BOARD_VIEW 	// 게시판 글 보기
 	= " SELECT no, title, content, writer, "
@@ -35,7 +35,27 @@ public class DBSQL {
 	+ " WHERE no = ? ";
 	
 	public static final String BOARD_GET_TOTALROW 	// 페이지 처리
-	= " SELECT COUNT(*) FROMM board ";
+	= " SELECT COUNT(*) FROM board ";
+	
+	
+	
+	// 공지사항 쿼리 ===============================================================================================
+	// 1. 공지사항 리스트 : 번호, 제목, 공지시작일, 공지종료일, 최근 수정일
+	public static final String NOTICE_LIST 	// 게시판 리스트
+	= " SELECT rnum, no, title, "
+	+ " TO_CHAR(startDate, 'yyyy.mm.dd') startDate, "
+	+ " TO_CHAR(writeDate, 'yyyy.mm.dd') writeDate, "
+	+ " TO_CHAR(endDate, 'yyyy.mm.dd') endDate, "
+	+ " TO_CHAR(updateDate, 'yyyy.mm.dd') updateDate FROM( "
+		+ " SELECT rownum rnum, no, title, startDate, writeDate, endDate, updateDate FROM ("
+			+ " SELECT no, title, startDate, writeDate, endDate, updateDate FROM notice"
+			+ " order by no desc "
+		+ " ) "
+	+ ") where rnum between ? and ?  ";
+	
+	// 2.
+	public static final String NOTICE_GET_TOTALROW 	// 페이지 처리
+	= " SELECT COUNT(*) FROM notice ";
 	
 	
 	// 회원관리 쿼리 ===============================================================================================
@@ -71,7 +91,7 @@ public class DBSQL {
 	// 내 정보 관리 ==========================================================================================================
 	public static final String MEMBER_VIEW =
 	  " SELECT m.id, m.name, m.gender, "
-	+ " TO_CHAR(m.birth, 'yyyy.mm.dd') birth, "		// arius에는 붙이지 않는다. 형식(TO_CHAR(m.xxxx, 'yyyy.mm.dd') xxxx)
+	+ " TO_CHAR(m.birth, 'yyyy.mm.dd') birth, "		// alius에는 붙이지 않는다. 형식(TO_CHAR(m.xxxx, 'yyyy.mm.dd') xxxx)
 	+ " m.tel, m.email, "
 	+ " TO_CHAR(m.regDate, 'yyyy.mm.dd') regDate, "
 	+ " m.gradeNo, g.gradeName, m.status "

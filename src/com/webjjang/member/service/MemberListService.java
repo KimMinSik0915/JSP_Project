@@ -7,6 +7,8 @@ public class MemberListService implements Service {
 	
 	MemberDAO dao;
 
+	// URL 요청에 따른 처리
+	// 넘오오는 데이터가 pageObject
 	@Override
 	public Object service(Object obj) throws Exception {
 		// TODO Auto-generated method stub

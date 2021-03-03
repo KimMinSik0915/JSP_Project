@@ -6,7 +6,7 @@
     pageEncoding="UTF-8"%>
 <% 
 // 0. 한글 처리
-request.setCharacterEncoding("UTF-8");
+System.out.println("EncodingFilter에서 한글처리 : " + request.getCharacterEncoding());
 
 // 1. 넘어오는 데이터 수집
 String title = request.getParameter("title");

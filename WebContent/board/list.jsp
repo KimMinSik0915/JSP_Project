@@ -1,3 +1,4 @@
+<%@page import="com.webjjang.util.PageObject"%>
 <%@page import="java.util.List"%>
 <%@page import="com.webjjang.main.controller.Beans"%>
 <%@page import="com.webjjang.main.controller.ExeService"%>
@@ -5,14 +6,48 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="pageObject" tagdir="/WEB-INF/tags"  %>
 <%
 // 여기가 java 코드 입니다. JSP - Service - DAO
 String url = request.getServletPath();
 
+// 페이지 처리를 위한 프로그램
+// 1. 페이지 처리를 위한 객체 사용
+PageObject pageObject = new PageObject();
+
+// 페이지에 대한 정보를 받는다.
+// page는 JSP에서 기본객체로 사용하고 있따. : 페이지의 정보가 담겨져 있다.
+String strCurPage = request.getParameter("page");
+
+// 넘어오는 페이지가 있는 경우 : 넘어오는 페이지를 현재 페이지로 세팅 -> 그렇지 않다면 1로 세팅
+if(strCurPage != null) {
+	
+	pageObject.setPage(Integer.parseInt(strCurPage));
+	
+}
+
+
+// 한 페이지에 표시할 데이터의 수를 받는다.
+String strPerPageNum = request.getParameter("prePageNum");
+
+// 한 페이지당 표시할 데이터의 수가 넘어오지 않으면 10으로 세팅, 넘어오면 넘어오는 데이터를 사용
+if(strPerPageNum!= null) {
+	
+	pageObject.setPerPageNum(Integer.parseInt(strPerPageNum));
+	
+}
+
+// 넘어오는 데이터 확인
+System.out.println("/board/list.jsp [page = " + strCurPage + ", perPageNum" + strPerPageNum + " ] : " );
+// PageObject 확인
+System.out.println("/board/list.jsp [pageObject = " + pageObject + " ] ");
+
 @SuppressWarnings("unchecked")
-List<BoardVO> list = (List<BoardVO>)ExeService.execute(Beans.get(url), null);
+List<BoardVO> list = (List<BoardVO>)ExeService.execute(Beans.get(url), pageObject);
 
 request.setAttribute("list", list);
+
+request.setAttribute("pageObject", pageObject);	// 페이지를 보여주기 위해 서버객체에 담는다.
 
 %>
 <!DOCTYPE html>
@@ -21,10 +56,10 @@ request.setAttribute("list", list);
 <meta charset="UTF-8">
 <title>게시판 리스트</title>
 <!-- 부트스트랩 라이브러리 등록(CDN방식) -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!-- <!--   <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+<!--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+<!--   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+<!--   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
 
   <style type="text/css">
   
@@ -90,6 +125,11 @@ request.setAttribute("list", list);
    <tr>
     <td colspan="5">
      <a href="writeForm.jsp" class="btn btn-default">글 쓰기</a>
+    </td>
+   </tr>
+   <tr>
+    <td colspan="5">
+     <pageObject:pageNav listURI="list.jsp" pageObject="${pageObject }"/>
     </td>
    </tr>
   </tfoot>
