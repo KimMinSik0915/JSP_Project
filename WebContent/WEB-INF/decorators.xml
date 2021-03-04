@@ -9,6 +9,9 @@
 		<pattern>/board/*</pattern>
 		<pattern>/notice/*</pattern>
 		<pattern>/member/*</pattern>
+		<pattern>/main/*</pattern>
+		<pattern>/error/*</pattern>
+		<pattern>/message/*</pattern>
 	</decorator>
 	
 <!-- 	<decorator name="admin" page="admin_decorator.jsp"> -->

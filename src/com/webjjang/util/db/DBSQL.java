@@ -57,6 +57,11 @@ public class DBSQL {
 	public static final String NOTICE_GET_TOTALROW 	// 페이지 처리
 	= " SELECT COUNT(*) FROM notice ";
 	
+	// 2. 공지사항 등록
+	public static final String NOTICE_WIRTE 	// 게시판 글 쓰기
+	= " INSERT INTO notice(no, title, content, startDate, endDate) "
+	+ " VALUES(notice_seq.NEXTVAL, ?, ?, ?, ?) ";
+	
 	
 	// 회원관리 쿼리 ===============================================================================================
 	public static final String MEMBER_LOGIN =	// 로그인 처리
@@ -97,5 +102,27 @@ public class DBSQL {
 	+ " m.gradeNo, g.gradeName, m.status "
 	+ " FROM member m, grade g "
 	+ " WHERE id = ? AND (m.gradeNo = g.gradeNo) "; 
+	
+	
+	// 메시지 ==========================================================================================================
+	public static final String MESSAGE_LIST 
+	= " SELECT rnum, no, sender, "
+	+ " TO_CHAR(sendDate, 'yyyy.mm.dd') sendDate,"
+	+ " accepter, "
+	+ " TO_CHAR(acceptDate, 'yyyy.mm.dd') acceptDate"
+	+ " FROM ( "
+		+ " SELECT ROWNUM rnum, no, sender, sendDate, accepter, acceptDate "
+		+ " FROM ( "
+			+ " SELECT no, sender, sendDate, accepter, acceptDate "
+			+ " FROM message "
+			+ " WHERE accepter = ? OR sender = ? "
+			+ " ORDER BY no DESC "
+		+ " ) "
+	+ " ) WHERE rnum BETWEEN ? AND ?";
+	
+	public static final String MESSAGE_GET_TOTLAROW
+	= " SELECT COUNT(*) "
+	+ " FROM message "
+	+ " WHERE sender = ? OR accepter = ? ";
 	
 }

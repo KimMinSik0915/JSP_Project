@@ -16,8 +16,11 @@ import com.webjjang.member.service.MemberGradeModifyService;
 import com.webjjang.member.service.MemberListService;
 import com.webjjang.member.service.MemberLoginService;
 import com.webjjang.member.service.MemberViewService;
+import com.webjjang.message.dao.MessageDAO;
+import com.webjjang.message.serviec.MessageListService;
 import com.webjjang.notice.dao.NoticeDAO;
 import com.webjjang.notice.service.NoticeListService;
+import com.webjjang.notice.service.NoticeWriteService;
 
 /**
  * Servlet implementation class init
@@ -74,9 +77,11 @@ public class Init extends HttpServlet {
 		
 		// service 생성 후 저장
 		Beans.put("/notice/list.jsp", new NoticeListService());
+		Beans.put("/notice/write.jsp", new NoticeWriteService());
 		
 		// service에 DAO넣기
 		Beans.get("/notice/list.jsp").setDAO(Beans.getDAO("noticeDAO"));
+		Beans.get("/notice/write.jsp").setDAO(Beans.getDAO("noticeDAO"));
 		
 		// 회원관리 ============================================
 		// dao 생성 저장
@@ -92,11 +97,20 @@ public class Init extends HttpServlet {
 		System.out.println("Init.init().Beans.getDAO(\"/memberDAO\" : " + Beans.getDAO("memberDAO"));
 
 		// service에 DAO 넣기
-		Beans.get("/member/login.jsp").setDAO(Beans.getDAO("memberDAO"));
+		
 		Beans.get("/member/list.jsp").setDAO(Beans.getDAO("memberDAO"));
 		Beans.get("/member/gradeModify.jsp").setDAO(Beans.getDAO("memberDAO"));
 		Beans.get("/member/view.jsp").setDAO(Beans.getDAO("memberDAO"));
 		
+		
+		// 메시지 =======================================================================
+		Beans.putDAO("messageDAO", new MessageDAO());
+
+		// 서비스 저장
+		Beans.put("/message/list.jsp", new MessageListService());
+		
+		// DAO넣기
+		Beans.get("/message/list.jsp").setDAO(Beans.getDAO("messageDAO"));
 		
 		// Oracle Driver와 필요한 method 로딩 
 		try {

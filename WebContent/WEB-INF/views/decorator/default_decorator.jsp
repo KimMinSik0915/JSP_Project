@@ -90,12 +90,28 @@ article {
 						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="/">Logo</a>
+					<a class="navbar-brand" href="${path }/main/main.jsp">Logo</a>
 				</div>
 				<div class="collapse navbar-collapse" id="myNavbar">
 					<ul class="nav navbar-nav">
 						<li><a href="${path }/notice/list.jsp">공지사항</a></li>
-						<li><a href="/board/list.jsp">게시판</a></li>
+						<li><a href="${path }/board/list.jsp">게시판</a></li>
+						<li><a href="${path }/message/list.jsp">메시지</a></li>
+					</ul>
+					
+					<!-- 메인 메뉴 부분의 사용자 정보르 -->
+					
+					<ul class="nav navbar-nav navbar-right" id="myNavbar">
+						<!-- 로그인이 되어 있지 않은 경우의 메뉴 -->
+						<c:if test="${empty login }">
+						 <li><a href="#"><span class="glyphicon glyphicon-user"></span>회원가입</a></li>
+						 <li><a href="${path }/member/loginForm.jsp"><span class="glyphicon glyphicon-log-in"></span> 로그인</a></li>
+						</c:if>
+						<!-- 로그인이 되어 있는 경우의 메뉴 -->
+						<c:if test="${!empty login }">
+						 <li><a href="${path }/member/view.jsp"><span class="glyphicon glyphicon-user"></span> ${login.name }</a></li>
+						 <li><a href="${path }/member/logout.jsp"><span class="glyphicon glyphicon-log-out"></span>로그아웃</a></li>
+						</c:if> 
 					</ul>
 				</div>
 			</div>

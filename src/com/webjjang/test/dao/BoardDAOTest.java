@@ -12,9 +12,9 @@ public class BoardDAOTest {
 		// BoardDAO 객체 생성
 //		BoardDAO dao = new BoardDAO();
 		
-		NoticeDAO dao = new NoticeDAO();
+//		NoticeDAO dao = new NoticeDAO();
 		
-		System.out.println(dao.list(null));
+//		System.out.println(dao.list(null));
 		
 //		MemberDAO dao = new MemberDAO();
 		
@@ -24,7 +24,7 @@ public class BoardDAOTest {
 //		
 //		List<BoardVO> list = (List<BoardVO>) ExeService.execute(new BoardListService(), null);
 		
-//		System.out.println(DBSQL.MEMBER_VIEW);
+		System.out.println(DBSQL.MESSAGE_GET_TOTLAROW);
 		
 //		MemberDAO dao = new MemberDAO();
 //		

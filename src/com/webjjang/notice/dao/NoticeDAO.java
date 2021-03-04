@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.bind.DataBindingException;
+
 import com.webjjang.notice.vo.NoticeVO;
 import com.webjjang.util.PageObject;
 import com.webjjang.util.db.DBInfo;
@@ -115,5 +117,41 @@ public class NoticeDAO {
 		
 	}
 	
-	
+	// 공지 등록
+	public int write(NoticeVO vo) throws Exception {
+		
+		int result = 0;
+		
+		try {
+			
+			con = DBInfo.getConnection();	// 1, 2
+			
+			pstmt = con.prepareStatement(DBSQL.NOTICE_WIRTE);
+			
+			pstmt.setString(1, vo.getTitle());
+			pstmt.setString(2, vo.getContent());
+			pstmt.setString(3, vo.getStartDate());
+			pstmt.setString(4, vo.getEndDate());
+			
+			result = pstmt.executeUpdate();
+			
+			System.out.println("NoticeDAO.write() :  공지 등록 완료");
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			
+			e.printStackTrace();
+			
+			throw new Exception("공지 등록 DB처리중 오류가 발생하혔습니다.");
+			
+		} finally {
+			
+			DBInfo.close(con, pstmt);
+			
+		}
+		
+		
+		return result;
+		
+	}
 }
