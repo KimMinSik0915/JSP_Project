@@ -36,7 +36,7 @@ pre {
 	border: 0px;
 }
 
-/* Remove the navbar's default margin-bottom and rounded borders */
+/* Remove the navbar's default margin-bottom and rounded borders */ 
 .navbar {
 	margin-bottom: 0;
 	border-radius: 0;
@@ -95,8 +95,10 @@ article {
 				<div class="collapse navbar-collapse" id="myNavbar">
 					<ul class="nav navbar-nav">
 						<li><a href="${path }/notice/list.jsp">공지사항</a></li>
+						<li><a href="${path }/image/list.jsp">이미지</a></li>
 						<li><a href="${path }/board/list.jsp">게시판</a></li>
 						<li><a href="${path }/message/list.jsp">메시지</a></li>
+						<li><a href="${path }/qna/list.jsp">Q&amp;A게시판</a></li>
 					</ul>
 					
 					<!-- 메인 메뉴 부분의 사용자 정보르 -->

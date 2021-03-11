@@ -2,7 +2,7 @@
 <%@page import="com.webjjang.main.controller.ExeService"%>
 <%@page import="com.webjjang.member.vo.LoginVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" errorPage="Login_error.jsp" %>
+    pageEncoding="UTF-8" errorPage="login_error.jsp" %>
 <%
 // 여기가 자바 입니다.
 
@@ -29,12 +29,8 @@ LoginVO loginVO = (LoginVO) ExeService.execute(Beans.get(url), vo);
 
 
 // ID나 PW가 틀린경우의 처리
-if (loginVO == null) {
+if (loginVO == null) throw new Exception("로그인 정보를 확인해 주세요");
 	
-	throw new Exception("로그인 정보를 확인해 주세요");
-	
-}
-
 // 로그인 처리
 session.setAttribute("login", loginVO);
 

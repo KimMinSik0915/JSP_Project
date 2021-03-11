@@ -43,6 +43,25 @@ public class AuthorityFilter implements Filter {
 		authMap.put("/message/writeForm.jsp", 1);
 		authMap.put("/message/delete.jsp", 1);
 		
+		// qna
+//		authMap.put("/qna/list.jsp", 1);
+		authMap.put("/qna/view.jsp", 1);
+		authMap.put("/qna/questionForm.jsp", 1);
+		authMap.put("/qna/question.jsp", 1);
+		authMap.put("/qna/answerForm.jsp", 1);
+		authMap.put("/qna/answer.jsp", 1);
+		authMap.put("/qna/updateForm.jsp", 1);
+		authMap.put("/qna/update.jsp", 1);
+		authMap.put("/qna/delete.jsp", 1);
+		
+		// image : 등록 , 수정, 삭제 : 회원(1)
+		authMap.put("/image/writeForm.jsp", 1);
+		authMap.put("/image/write.jsp", 1);
+		authMap.put("/image/updateForm.jsp", 1);
+		authMap.put("/image/updateFile.jsp", 1);
+		authMap.put("/image/update.jsp", 1);
+		authMap.put("/image/delete.jsp", 1);
+		
 	}
 	
 	// 요청한 url

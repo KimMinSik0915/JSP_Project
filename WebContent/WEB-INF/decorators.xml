@@ -12,6 +12,8 @@
 		<pattern>/main/*</pattern>
 		<pattern>/error/*</pattern>
 		<pattern>/message/*</pattern>
+		<pattern>/qna/*</pattern>
+		<pattern>/image/*</pattern>
 	</decorator>
 	
 <!-- 	<decorator name="admin" page="admin_decorator.jsp"> -->

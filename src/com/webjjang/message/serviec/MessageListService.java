@@ -2,6 +2,7 @@ package com.webjjang.message.serviec;
 
 import com.webjjang.main.controller.Service;
 import com.webjjang.message.dao.MessageDAO;
+import com.webjjang.util.PageObject;
 
 public class MessageListService implements Service{
 
@@ -11,7 +12,13 @@ public class MessageListService implements Service{
 	public Object service(Object obj) throws Exception {
 		// TODO Auto-generated method stub
 		
-		return dao.list();
+		long totalRow = dao.getTotalRow();
+		
+		PageObject pageObject = (PageObject) obj;
+		
+		pageObject.setTotalRow(totalRow);
+		
+		return dao.list(pageObject);
 		
 	}
 

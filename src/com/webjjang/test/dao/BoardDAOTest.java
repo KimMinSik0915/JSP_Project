@@ -24,7 +24,7 @@ public class BoardDAOTest {
 //		
 //		List<BoardVO> list = (List<BoardVO>) ExeService.execute(new BoardListService(), null);
 		
-		System.out.println(DBSQL.MESSAGE_GET_TOTLAROW);
+		System.out.println(DBSQL.MESSAGE_LIST);
 		
 //		MemberDAO dao = new MemberDAO();
 //		
