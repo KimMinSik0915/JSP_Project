@@ -21,8 +21,8 @@ if(strCurPage != null) {
 
 String strPerPageNum = request.getParameter("prePageNum");
 
-long perPageNum = 10;
-
+long perPageNum = 2;
+ 
 if(strPerPageNum != null) {
 	
 	perPageNum = Long.parseLong(strPerPageNum);

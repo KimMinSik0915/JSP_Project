@@ -12,6 +12,7 @@ import com.webjjang.board.service.BoardUpdateService;
 import com.webjjang.board.service.BoardViewService;
 import com.webjjang.board.service.BoardWriteService;
 import com.webjjang.image.dao.ImageDAO;
+import com.webjjang.image.service.ImageDeleteService;
 import com.webjjang.image.service.ImageListService;
 import com.webjjang.image.service.ImageUpdateFileService;
 import com.webjjang.image.service.ImageViewService;
@@ -156,14 +157,16 @@ public class Init extends HttpServlet {
 		Beans.put("/image/write.jsp", new ImageWriteService());
 		Beans.put("/image/view.jsp", new ImageViewService());
 		Beans.put("/image/updateFile.jsp", new ImageUpdateFileService());
+		Beans.put("/image/delete.jsp", new ImageDeleteService());
 		
 		// service에 DAO넣기
 		Beans.get("/image/list.jsp").setDAO(Beans.getDAO("imageDAO"));
 		Beans.get("/image/write.jsp").setDAO(Beans.getDAO("imageDAO"));
 		Beans.get("/image/view.jsp").setDAO(Beans.getDAO("imageDAO"));
 		Beans.get("/image/updateFile.jsp").setDAO(Beans.getDAO("imageDAO"));
+		Beans.get("/image/delete.jsp").setDAO(Beans.getDAO("imageDAO"));
 
-		System.out.println("Init.init().Beans.get(\"/image/updateFile.jsp\" : " + Beans.get("/image/updateFile.jsp"));
+		System.out.println("Init.init().Beans.get(\"/image/delete.jsp\" : " + Beans.get("/image/delete.jsp"));
 		System.out.println("Init.init().Beans.getDAO(\"/imageDAO\" : " + Beans.getDAO("imageDAO"));
 		
 		// Oracle Driver와 필요한 method 로딩 

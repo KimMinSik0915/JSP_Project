@@ -272,4 +272,41 @@ public class ImageDAO {
 		
 	}
 
+	// 5. Image 게시판 글 삭제
+	public int delete(long no) throws Exception {
+		
+		int result = 0;
+		
+		
+		try {
+			
+			con = DBInfo.getConnection();
+			
+			pstmt = con.prepareStatement(DBSQL.IMAGE_DELETE);
+			
+			pstmt.setLong(1, no);
+			
+			result = pstmt.executeUpdate();
+			
+			System.out.println("ImageDAO.write() : 이미지 게시판 글 삭제 완료");
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			
+			e.printStackTrace();
+			
+			throw new Exception("이미지 게시판 글 삭제중 DB에 오류가 발생하였습니다.");
+			
+		} finally {
+			
+			DBInfo.close(con, pstmt);
+			
+		}
+		
+		
+		return result;
+		
+	}
+
+	
 }

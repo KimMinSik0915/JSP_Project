@@ -215,7 +215,7 @@ public class DBSQL {
 	
 	// 페이지 처리를 위해  : 리스트
 	public static final String IMAGE_GET_TOTALROW
-	= " select count(*) from qna ";
+	= " select count(*) from image ";
 	
 	public static final String IMAGE_WERITE
 	= " INSERT INTO image (no, title, content, id, fileName) "
@@ -231,5 +231,9 @@ public class DBSQL {
 	public static final String IMAGE_UPDATE_FILE
 	= " UPDATE image SET fileName = ? "
 	+ " WHERE no = ? ";
+	
+	// 이미지 게시판 삭제
+	public static final String IMAGE_DELETE
+	= " DELETE FROM image WHERE no = ? ";
 	
 }

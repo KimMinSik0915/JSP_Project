@@ -79,7 +79,7 @@
   <!-- 파일 첨부를 하는 입력에는 반드시 post 방식이어야 하고 enctype이어야 한다. 
   	   Input tag의 type = file이어야 한다.-->
   <form action="write.jsp" method="post" enctype="multipart/form-data" id="writeForm">
-  
+   <input name="perPageNum" value="${param.perPageNum }" type="hidden">
    <div class="form-group">
     <label for="title">제목</label>
     <input name="title" id="title" class="form-control">
